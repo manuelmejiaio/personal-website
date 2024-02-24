@@ -11,7 +11,7 @@ yarn run build
 cd docs
 
 # remover comment if you are deploying to a custom domain
- echo 'manuelmejiajr.com' > CNAME
+ echo 'manuelmejia.io' > CNAME
 
 # getting out of the build output directory
 cd -
@@ -20,5 +20,5 @@ cd -
 git add -A
 read -p "enter git commit message: "  message 
 git commit -m ''"$message"''
-git push -f https://github.com/mejiamanuel57/personal-website master
+git push -f https://github.com/manuelmejiaio/personal-website master
 

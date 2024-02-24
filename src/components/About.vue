@@ -44,24 +44,24 @@ export default {
     return {
       profiles: [
         {
-          name: 'Manuel Mejia Jr. - Twitter',
-          icon: 'IconTwitter',
-          link: 'https://twitter.com/mejiamanuel57'
-        },
-        {
-          name: 'Manuel Mejia Jr. - GitHub',
-          icon: 'IconGithub',
-          link: 'https://github.com/mejiamanuel57'
-        },
-        {
-          name: 'Manuel Mejia Jr. - Stack Overflow',
-          icon: 'IconStackoverflow',
-          link: 'https://stackoverflow.com/users/2958543/mejiamanuel57?tab=profile'
-        },
-        {
-          name: 'Manuel Mejia Jr. - LinkedIn',
+          name: 'Manuel Mejia - LinkedIn',
           icon: 'IconLinkedin',
-          link: 'https://www.linkedin.com/in/mejiamanuel57/'
+          link: 'https://www.linkedin.com/in/manuelmejiaio/'
+        },
+        {
+          name: 'Manuel Mejia - Twitter',
+          icon: 'IconTwitter',
+          link: 'https://twitter.com/manuelmejiaio'
+        },
+        {
+          name: 'Manuel Mejia - GitHub',
+          icon: 'IconGithub',
+          link: 'https://github.com/manuelmejiaio'
+        },
+        {
+          name: 'Manuel Mejia - Stack Overflow',
+          icon: 'IconStackoverflow',
+          link: 'https://stackoverflow.com/users/2958543/manuelmejiaio?tab=profile'
         }
       ]
     }
