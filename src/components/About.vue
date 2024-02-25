@@ -3,7 +3,7 @@
     class="flex flex-col bg-cover bg-center items-center text-center text-white pt-12 md:pt-24 pb-64 px-5"
     :style="{ backgroundImage: 'url(' + require('@/assets/images/background.jpg') + ')' }"
   >
-    <img alt="Manuel Mejia Jr." class="h-32 md:h-64 mx-auto rounded-full" src="@/assets/images/photo.jpg" />
+    <img alt="Manuel Mejia" class="h-32 md:h-64 mx-auto rounded-full" src="@/assets/images/photo.jpg" />
     <p class="text-4xl md:text-6xl">Hello, I'm Manuel.</p>
     <p class="md:w-9/12 text-xl md:text-2xl mb-10">
       I’m a Software Engineer currently working as Tech Lead at
