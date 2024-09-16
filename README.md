@@ -12,7 +12,7 @@ yarn install
 yarn dev
 ```
 
-### Lints, compiles, minifies, commits and deploys for production
+### Lints, compiles, minifies, commits and deploys for production (We have a workflow!)
 ```
 yarn deploy
 ```
