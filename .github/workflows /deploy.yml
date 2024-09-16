@@ -1,0 +1,41 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - master  # Run the workflow only when pushing to the master branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'  # You can change the version to match your project
+
+    - name: Install dependencies
+      run: yarn install
+
+    - name: Lint code
+      run: yarn run lint
+
+    - name: Build project
+      run: yarn run build
+
+    - name: Deploy to GitHub Pages
+      run: |
+        cd docs
+        echo 'manuelmejia.io' > CNAME
+        cd ..
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git add -A
+        git commit -m "Automated deployment"
+        git push -f https://<your-github-token>@github.com/manuelmejiaio/personal-website master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
