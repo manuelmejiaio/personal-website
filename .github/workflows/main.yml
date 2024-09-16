@@ -15,13 +15,13 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'  # Downgrade to Node.js v18 (LTS)
+          node-version: '16'  # Revert to Node.js v16 to fix crypto issues
 
       - name: Install dependencies
         run: yarn install
 
       - name: Update Browserslist database
-        run: npx browserslist@latest --update-db  # Add this step
+        run: npx browserslist@latest --update-db
 
       - name: Build project
         run: yarn build
@@ -30,5 +30,6 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs  # Adjust this based on your output directory
-          publish_branch: master  # Use `publish_branch` instead of `target_branch`
+          publish_dir: ./docs
+          publish_branch: master
+
