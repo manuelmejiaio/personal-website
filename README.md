@@ -1,4 +1,4 @@
-# Manuel Mejia tests
+# Manuel Mejia
 
 ### Feel free to copy this project for any personal purpose, but don't forget to say thanks. 🙂
 
