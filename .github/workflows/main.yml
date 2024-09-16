@@ -24,7 +24,7 @@ jobs:
         run: npx browserslist@latest --update-db
 
       - name: Build project
-        run: yarn build --dest docs  # Direct the build output to the /docs folder
+        run: yarn build  # Direct the build output to the /docs folder
 
       - name: Commit and push changes
         run: |
