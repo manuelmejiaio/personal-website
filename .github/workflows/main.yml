@@ -15,7 +15,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'  # Revert to Node.js v16 to fix crypto issues
+          node-version: '16'  # Ensure compatibility with your dependencies
 
       - name: Install dependencies
         run: yarn install
@@ -24,12 +24,12 @@ jobs:
         run: npx browserslist@latest --update-db
 
       - name: Build project
-        run: yarn build
+        run: yarn build --dest docs  # Direct the build output to the /docs folder
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs
-          publish_branch: master
-
+      - name: Commit and push changes
+        run: |
+          git config --local user.name "GitHub Actions"
+          git config --local user.email "actions@github.com"
+          git add docs
+          git commit -m "Deploy updates to GitHub Pages"
+          git push
