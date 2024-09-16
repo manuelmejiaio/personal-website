@@ -15,7 +15,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'  # Ensure compatibility with your dependencies
+          node-version: '16'  # or '18' based on your compatibility
 
       - name: Install dependencies
         run: yarn install
@@ -24,7 +24,10 @@ jobs:
         run: npx browserslist@latest --update-db
 
       - name: Build project
-        run: yarn build  # Direct the build output to the /docs folder
+        run: yarn build
+
+      - name: Add CNAME for custom domain
+        run: echo 'manuelmejia.io' > docs/CNAME  # Adds the CNAME file in the /docs folder
 
       - name: Commit and push changes
         run: |
