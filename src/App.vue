@@ -30,11 +30,14 @@ export default {
     Footer
   },
   mounted() {
-    // Fetch data when the component is mounted
-    fetch('https://web.dragonball-api.com/api/character')
-      .then(response => response.json()) // Convert the response to JSON
-      .then(data => {console.log(data)}) // Log the data to the console
-      .catch(error => console.error('Error fetching data from dragonball-api:', error)); // Handle any errors
+    // Fetch the first 10 Drago Ball characters
+    fetch('https://api.allorigins.win/get?url=https://dragonball-api.com/api/characters?limit=10') 
+    .then(response => response.json())
+    .then(data => {
+      const parsedData = JSON.parse(data.contents) // Parse the string into an object
+      console.log(parsedData) // Now you have a JavaScript object
+    })
+    .catch(error => console.error('Error fetching data from dragonball-api:', error))
   }
 }
 </script>
