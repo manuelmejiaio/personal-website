@@ -27,5 +27,12 @@ export default {
     Contact,
     Footer
   }
+  mounted() {
+    // Fetch data when the component is mounted
+    fetch('https://web.dragonball-api.com/api/character')
+      .then(response => response.json()) // Convert the response to JSON
+      .then(data => {console.log(data)}) // Log the data to the console
+      .catch(error => console.error('Error fetching data from dragonball-api:', error)); // Handle any errors
+  }
 }
 </script>
