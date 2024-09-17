@@ -26,7 +26,7 @@ export default {
     Podcast,
     Contact,
     Footer
-  }
+  },
   mounted() {
     // Fetch data when the component is mounted
     fetch('https://web.dragonball-api.com/api/character')
