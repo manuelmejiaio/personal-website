@@ -10,6 +10,8 @@
 </template>
 
 <script>
+/* eslint-disable no-console */
+  
 import Navigation from './components/Navigation.vue'
 import About from './components/About.vue'
 import Blog from './components/Blog.vue'
