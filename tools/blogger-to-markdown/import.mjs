@@ -22,9 +22,6 @@ const FEED_PATH = join(
 )
 /** Markdown posts consumed by Astro (see blog/) */
 const OUT_ROOT = join(REPO_ROOT, 'blog/src/content/blog')
-/** Legacy *.html URLs → static redirect pages under blog/public/ */
-const REDIRECT_PUBLIC = join(REPO_ROOT, 'blog/public')
-const SITE_ORIGIN = 'https://manuelmejia.io'
 const BLOG_PREFIX = '/blog'
 
 function yamlString(value) {
@@ -140,31 +137,12 @@ canonicalPath: ${yamlString(canonicalPath)}
     writeFileSync(absMd, frontmatter + (bodyMd ? bodyMd + '\n' : ''), 'utf8')
     console.log('Wrote', relative(REPO_ROOT, absMd))
     written++
-
-    const legacy = parsed.legacyPath.replace(/^\//, '')
-    const redirectAbs = join(REDIRECT_PUBLIC, legacy)
-    mkdirSync(dirname(redirectAbs), { recursive: true })
-    const target = canonicalPath
-    const canonicalUrl = new URL(target, `${SITE_ORIGIN}/`).href
-    const redirectHtml = `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Redirecting…</title>
-  <link rel="canonical" href="${canonicalUrl}">
-  <meta http-equiv="refresh" content="0;url=${target}">
-</head>
-<body>
-  <p>Moved permanently. <a href="${target}">Continue to the post</a>.</p>
-</body>
-</html>
-`
-    writeFileSync(redirectAbs, redirectHtml, 'utf8')
   }
 
   console.log('\nDone. Posts written:', written, 'entries skipped:', skipped)
-  console.log('Redirects written under', relative(REPO_ROOT, REDIRECT_PUBLIC))
+  console.log(
+    'Note: legacy *.html stubs are not written here; they shadow post URLs on GitHub Pages. Use edge redirects for old Blogger .html links if needed.'
+  )
 }
 
 main()
