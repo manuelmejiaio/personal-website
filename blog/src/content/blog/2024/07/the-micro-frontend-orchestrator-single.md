@@ -1,0 +1,89 @@
+---
+title: "The Micro Frontend Orchestrator: single-spa"
+pubDate: "2024-07-09T02:25:00Z"
+description: ""
+legacyPath: /2024/07/the-micro-frontend-orchestrator-single.html
+canonicalPath: /blog/2024/07/the-micro-frontend-orchestrator-single
+---
+
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto;"><tbody><tr><td style="text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi836IQyIbplW5TN71WPza6hqmYUnijuwfKhBQjCfSYAmsELZ3fGSQl1wiHvgt0fWhiLv5ClTq7b96LVIVcr5L2UamS3srYi8zn-zfBi9qNZ0V2II3ikpJsXw-m3BPCy7p9XUqYBrcOPm73Lrecq8qWfS3-b1NLHcskOOWZgrdIOqT-WqXBIMIER6npThw/s2000/Platt-Classical-Post.png" style="margin-left: auto; margin-right: auto;"><img alt="Yannick Nézet-Séguin -Photograph by Hiroyuki Ito / Getty" border="0" data-original-height="1333" data-original-width="2000" height="266" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi836IQyIbplW5TN71WPza6hqmYUnijuwfKhBQjCfSYAmsELZ3fGSQl1wiHvgt0fWhiLv5ClTq7b96LVIVcr5L2UamS3srYi8zn-zfBi9qNZ0V2II3ikpJsXw-m3BPCy7p9XUqYBrcOPm73Lrecq8qWfS3-b1NLHcskOOWZgrdIOqT-WqXBIMIER6npThw/w400-h266/Platt-Classical-Post.png" title="Yannick Nézet-Séguin -Photograph by Hiroyuki Ito / Getty" width="400"></a></td></tr><tr><td class="tr-caption" style="text-align: center;"><br></td></tr></tbody></table>
+
+In the dynamic world of modern web development, micro frontends have emerged as a pivotal strategy to break down monolithic frontend applications into manageable, independently deployable units. For the past two years, I've had the pleasure of working with [single-spa](https://single-spa.js.org/) (yes, all in kebab-case), a framework that has revolutionized how we orchestrate these micro frontends. Let's talk about why single-spa is an excellent tool for managing micro frontends and how it simplifies the complexities of modern web architecture.
+
+### A Seamless Orchestrator for Micro Frontends
+
+single-spa stands out as a robust framework that seamlessly orchestrates different micro frontends without the need to worry about the internal tooling of each. When I first encountered single-spa, I was struck by its straightforward approach to managing multiple frontend applications within a single project. This flexibility allows you to use multiple JavaScript frameworks (React, Vue, Angular...) in one place, making it incredibly versatile and powerful.
+
+Here is a basic setup example:
+
+// root-config/src/index.js
+import { registerApplication, start } from "single-spa"
+
+// Register the Navigation Menu micro frontend (React)
+registerApplication({
+  name: "@online-store/navigation-menu",
+  app: () \=> System.import("@online-store/navigation-menu"),
+  activeWhen: () \=> true // always visible
+
+})
+
+// Register the Product List micro frontend (Vue)
+registerApplication({
+  name: "@online-store/product-list",
+  app: () \=> System.import("@online-store/product-list"),
+  activeWhen: \["/product-list"\]
+})
+
+// Register the Cart micro frontend (Angular)
+registerApplication({
+  name: "@online-store/cart",
+  app: () \=> System.import("@online-store/cart"),
+  activeWhen: \["/cart"\]
+})
+
+start()
+
+### Easy to Learn and Implement
+
+One of the most compelling aspects of single-spa is its ease of use. The learning curve is gentle, making it accessible even for developers who are new to the concept of micro frontends. The [documentation](https://single-spa.js.org/docs/getting-started-overview) is thorough and well-organized, providing clear guidance on how to set up and configure your projects. In my experience, getting up and running with single-spa took very little time, and I was able to see the benefits almost immediately.
+
+One notable example of a successful micro frontend implementation with single-spa is the Netflix UI. Netflix, being a large-scale application with a complex user interface, faced challenges in maintaining and scaling their frontend codebase. By adopting a micro frontend architecture with single-spa, Netflix was able to break down their monolithic frontend into smaller, more manageable pieces. This approach allowed them to innovate faster and improve overall application performance. More details can be found in this [post](https://www.momentslog.com/2021/01/01/exploring-micro-frontends-with-single-spa/).
+
+### Decoupling and Independence
+
+single-spa promotes the decoupling of frontend teams, allowing them to work independently on their respective micro frontends without stepping on each other's toes. This independence is particularly beneficial in large organizations where multiple teams are responsible for different parts of a web application. Each team can use the tools and frameworks that best suit their needs, while single-spa handles the orchestration, ensuring that everything works together seamlessly.
+
+### Flexibility and Scalability
+
+The flexibility that single-spa offers is unparalleled. Whether you are working with React, Angular, Vue, or even legacy frameworks, single-spa integrates them effortlessly. This flexibility extends to scaling your application as well. As your project grows, you can continue to add new micro frontends without significant rewrites or restructuring. single-spa's architecture supports incremental updates, making it easy to scale your application over time.
+
+### Communication Between Micro Frontends
+
+A critical aspect of working with micro frontends is managing the communication between them. single-spa provides several approaches for this, ensuring that data and state can be shared efficiently across different micro frontends. One popular method is using a browser default one 'custom events'. Custom events enable the creation of bespoke events tailored to the needs of your application.
+
+To create and dispatch a custom event, you can use the following example:
+
+// Create a custom event
+const event \= new CustomEvent('myCustomEvent', { detail: { key: 'value' } })
+
+// Dispatch the custom event
+window.dispatchEvent(event)
+
+Listening for the event in another micro frontend is equally straightforward:
+
+// Listen for the custom event
+window.addEventListener('myCustomEvent', (event) \=> {
+  console.log(event.detail); // { key: 'value' }
+})
+
+Using custom events allows different micro frontends to communicate without tightly coupling their implementations. This approach maintains the independence of each micro frontend while enabling seamless interaction.
+
+For more detailed guidance on sharing application state between micro frontends, you can refer to the [single-spa documentation](https://single-spa.js.org/docs/faq/#how-can-i-share-application-state-between-applications) and [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/Events/Creating_and_triggering_events#creating_custom_events).
+
+### Conclusion
+
+Over the past two years, I have experienced firsthand the transformative benefits of using single-spa for managing micro frontends. Projects that once seemed daunting due to their complexity became manageable and maintainable. The ability to deploy updates independently reduced downtime and improved the overall stability of our applications. Moreover, the developer experience improved significantly, with teams enjoying the freedom to innovate and experiment within their micro frontends.
+
+single-spa has proven to be an invaluable tool in the realm of micro frontends. Its simplicity, flexibility, and robust orchestration capabilities make it an excellent choice for any organization looking to adopt a micro frontend architecture. My journey with single-spa has been incredibly rewarding, and I look forward to continuing to leverage its strengths in future projects.
+
+If you're considering a micro frontend architecture, I highly recommend giving single-spa a try. It might just be the solution you need to streamline your development process and achieve a new level of efficiency and scalability. Feel free to reach out with any questions or to share your experiences with single-spa.

@@ -1,0 +1,60 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="canonical" href="https://manuelmejia.io/blog/2017/08/webconfig-no-longer-exist-in-net-core"><title>Web.config no longer exists in .NET Core</title><style>:root{color-scheme:light dark;--text: #1a1a1a;--muted: #555;--link: #0b57d0;--bg: #fafafa;--border: #e0e0e0}@media (prefers-color-scheme: dark){:root{--text: #e8e8e8;--muted: #a3a3a3;--link: #8ab4f8;--bg: #121212;--border: #333}}*,*:before,*:after{box-sizing:border-box}body{margin:0 auto;max-width:42rem;padding:1.5rem 1.25rem 3rem;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,sans-serif;line-height:1.6;color:var(--text);background:var(--bg)}a{color:var(--link)}a.back{display:inline-block;margin-bottom:1.5rem;text-decoration:none}a.back:hover{text-decoration:underline}article header{margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid var(--border)}article h1{margin:0 0 .35rem;font-size:1.75rem;line-height:1.25}article time{font-size:.9rem;color:var(--muted)}.prose :global(img){max-width:100%;height:auto}.prose :global(pre){overflow-x:auto;padding:.75rem 1rem;border-radius:6px;background:#7f7f7f1f;font-size:.875rem}.prose :global(table){width:100%;border-collapse:collapse;font-size:.9rem}.prose :global(th),.prose :global(td){border:1px solid var(--border);padding:.35rem .5rem}
+</style></head> <body> <a class="back" href="/blog">← All posts</a> <article> <header> <h1>Web.config no longer exists in .NET Core</h1> <time datetime="2017-08-01T19:35:00.004Z"> August 1, 2017 </time> </header> <div class="prose">  <p><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgOgFmypacGE2V1i84JnUyJJsRh_sgYvgERwLut6Q1OraO0FM9CnuPHOv5GtMHcukCfXIUVsNJIqjNa4BIVA_Vjl9XmMnAzx5AIzi7DXVYRstBtaC-MaQPW7Jiqwrofjuzn1cUtfByCVT0/s1600/63231199.jpg"></a></p>
+<p><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi8afE_lPefE5favPCmFp6p6aIvAEQFXMmiih2WsaWs8X8Awf548p4t1Y5ibcAuGqATQuaO3lshyjRuX3x_mllc56fEuh59gCvF-s5wAKSOMhUn5agzd-1Pk7Wte45P1YtQWO-2lWYsQRw/s1600/63231199.jpg"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi8afE_lPefE5favPCmFp6p6aIvAEQFXMmiih2WsaWs8X8Awf548p4t1Y5ibcAuGqATQuaO3lshyjRuX3x_mllc56fEuh59gCvF-s5wAKSOMhUn5agzd-1Pk7Wte45P1YtQWO-2lWYsQRw/s320/63231199.jpg" alt=""></a></p>
+<p>I thought to write a post about my journey making projects with .NET Core but that will be a long post and maybe nobody will read it; instead, I will make a series of posts with some topics I found interesting to talk about.</p>
+<p>Many of us come from ASP.NET 4 and old versions, we used to work with <strong>Web.config</strong> in our web projects, a file to place our settings in XML format, but it no longer exists in .NET Core (or at least in our Solution Explorer).</p>
+<p>In .NET  Core we use <strong>appsettings.json</strong> to place our settings in JSON format. Let’s see how this works by getting our hands dirty:</p>
+<p><strong>1)</strong> Create a .NET Core Web Application project:</p>
+<p><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg1nNUGyukdexBbkSm4dqhxIEtGoxPSH8adVXnQF0T_oAwMYrlVn5-fmCUGf2avB8gZws7LxLNiFg2ChcEqSmRj2MwOdhkolnquwIop3Z5Vsx362dQOnpguZrC1yWKhQ5a9z_aA18MpeJs/s1600/1.PNG" alt=""></p>
+<p>You will see a bunch of files generated from the template in the Solution Explorer. appsettings.json is meant to replace settings previously located in Web.config . To catch these configurations in the project, the <strong>Startup.cs</strong> file has the following lines:</p>
+<p><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiyp0s6g5QOlvb2hdP1kpAdDjYtIkONWFL-9R05QPXWA1O17wpGq2lnUYG65vaeYDKzdUB-6sW0CFV9fN3Fd20r6m0VYQqvFORG9U_LP-H-F1DP3FnDZrjXPduMmK6rMKw8juiQ7VYBmkk/s1600/2.PNG" alt=""></p>
+<p>As you can see the appsettings.json file is added to the <strong>ConfigurationBuilder</strong>. Also, pay attention to the $“appsettings.{env.EnvironmentName}.json” line, where it checks the environment, i will talk about that in a few minutes.</p>
+<p><strong>2)</strong> To add application settings to our application, open appsettings.json and add the following lines before the <strong>“Logging”</strong> part already there:</p>
+<p>“AppSettings”: {<br>
+    “Spoiler”: “If you watch Game Of Thrones you are awesome”<br>
+},</p>
+<p><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgYSLxC4GUhkhA0ncTanMYGGa30fn7ov9XLUXwgekZzawghn5XReaOb9xi3hVW3ScFkoc8WiqOajSFM4IB4wIpFi8k105as9uM5vc_91mSt5gl3hdhSxe3Ie03g4kdxxzaS4ZdcLWM4j9M/s1600/3.PNG"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgYSLxC4GUhkhA0ncTanMYGGa30fn7ov9XLUXwgekZzawghn5XReaOb9xi3hVW3ScFkoc8WiqOajSFM4IB4wIpFi8k105as9uM5vc_91mSt5gl3hdhSxe3Ie03g4kdxxzaS4ZdcLWM4j9M/s1600/3.PNG" alt=""></a></p>
+<p>For the record, both AppSettings and Spoiler could have been named anything we’d like, this is just an example.</p>
+<p><strong>3)</strong> .NET Core uses an options pattern to resolve settings from appsettings.json. To read the Spoiler setting add the following line to the <strong>ConfigureServices</strong> method in Startup.cs:</p>
+<p>var appSettings = Configuration.GetSection(“AppSettings”);</p>
+<p><strong>4)</strong> Another point to keep in mind .Net Core is based on dependency injection, you will be injecting various options in your controllers. To register AppSettings in the container, create a new C# class to represent the settings:</p>
+<p>public class AppSettings<br>
+{   <br>
+   public string Hello { get; set; }<br>
+}</p>
+<p><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh8coGMH_3XGnzOEu0Jej93xtoni_VzcO1R2L1VqTpzBNDe3eoPtWKbeqdMWpe5tCLKvcmgo5spEAxNI7T97bfdFP6wmCP7OMjwhz1VNXew3YfnEW8fZHtwjxz3TvUnQjqN5TTwrJ9a9_4/s1600/4.PNG"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh8coGMH_3XGnzOEu0Jej93xtoni_VzcO1R2L1VqTpzBNDe3eoPtWKbeqdMWpe5tCLKvcmgo5spEAxNI7T97bfdFP6wmCP7OMjwhz1VNXew3YfnEW8fZHtwjxz3TvUnQjqN5TTwrJ9a9_4/s1600/4.PNG" alt=""></a></p>
+<p><strong>5)</strong> Now register the service in the Startup.cs file just after the call to GetSection (<strong>step 3</strong>):</p>
+<p>services.Configure<appsettings>(appSettings);</appsettings></p>
+<p><strong>6)</strong> Now it’s time to inject it into our controller. Add a <strong>constructor to the HomeController</strong> looking like this:</p>
+<p>private readonly AppSettings _appSettings;<br>
+public HomeController(IOptions<appsettings> appSettings)<br>
+{<br>
+   _appSettings = appSettings.Value;<br>
+}</appsettings></p>
+<p><strong>7)</strong> To use the Spoiler option from our settings, we’ll send the value in the Index method:</p>
+<p>public IActionResult Index()<br>
+{<br>
+    ViewBag.Spoiler = _appSettings.Spoiler;<br>
+    return View();<br>
+}</p>
+<p><strong>8)</strong> Finally in our Index.cshml:</p>
+<h1> This is very important: @ViewBag.Spoiler</h1>  
+<p>Press F5 And Voila!</p>
+<p><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjtejKFGIgSOsjnW7uSDNrcl_l2kyqQ9n8FarJ6dkFE3J-uLRLKak5EfDZ1devE-zAc__aJvIwdXUqZbYMJFM9iN4V3LLvzY6xXEWWGDbo4A1pWdlCczVB6Ssuq7QhWwRR3wkaed7ciiT4/s1600/10.PNG"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjtejKFGIgSOsjnW7uSDNrcl_l2kyqQ9n8FarJ6dkFE3J-uLRLKak5EfDZ1devE-zAc__aJvIwdXUqZbYMJFM9iN4V3LLvzY6xXEWWGDbo4A1pWdlCczVB6Ssuq7QhWwRR3wkaed7ciiT4/s640/10.PNG" alt=""></a></p>
+<p><strong>AppSetings enviroments</strong></p>
+<p>As you can remember in our ASP.NET 4 project, We had different web.config files depending on the deploying environment we wanted to use:</p>
+<p><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjU7bN-QhcFb-bOqvW3QLCjb9XVRNZIiK7VGQkHUj_9UUrDcRGAveC1tP9VEaibLznu2YaZ4dNjzoAkh-oftq-DVaFeP2gcbFWODG2d7kNz8lvD6gO6egeEUM4pBKGUd1gw-nSB9BtE2oA/s1600/11.PNG"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjU7bN-QhcFb-bOqvW3QLCjb9XVRNZIiK7VGQkHUj_9UUrDcRGAveC1tP9VEaibLznu2YaZ4dNjzoAkh-oftq-DVaFeP2gcbFWODG2d7kNz8lvD6gO6egeEUM4pBKGUd1gw-nSB9BtE2oA/s1600/11.PNG" alt=""></a></p>
+<p>We used to have settings for the development and production environment in most cases. Now in .Net Core we have something similar. Let’s create another set of settings for the production environment, create a new JSON file named <strong>appsettings.Production.json</strong> .See how the new file is automatically nested beneath appsettings.json</p>
+<p><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi_N8h8i0TG-1a79pZIArVs-IThUJ_0JpR4I-J-yx8monU9K2CxiCTAcXZiJr3SjByZz2EspEEX71N0Wbx2LzP2moAoInCrMinhDnK4WcC9V6aLLRCwr6deTnh1xqdj2ujRfrbJBfIdHwI/s1600/13.PNG"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi_N8h8i0TG-1a79pZIArVs-IThUJ_0JpR4I-J-yx8monU9K2CxiCTAcXZiJr3SjByZz2EspEEX71N0Wbx2LzP2moAoInCrMinhDnK4WcC9V6aLLRCwr6deTnh1xqdj2ujRfrbJBfIdHwI/s400/13.PNG" alt=""></a></p>
+<p>To override the value of the Spoiler setting, add the following to appsettings.Production.json:</p>
+<p>{<br>
+   “AppSettings”: {<br>
+       “Spoiler”: “If you watch Game Of Thrones you are awesome and also you are in Production”<br>
+   }<br>
+}</p>
+<p>Open <strong>launchSettings.json</strong>  file and change “ASPNETCORE_ENVIRONMENT”: “Development” for “ASPNETCORE_ENVIRONMENT”: “Production”</p>
+<p>Press F5</p>
+<p><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiuK7xQzz5_nBZHCYi1CRJ6sLNYq2uBq7WDwA-c61zzyJmCl-rdusRU_8bHiO0md__RPgQjVo8ngGE8aR47V7QUi2XAJIzVGqGQLJSNg5pdlSKxUXnQPCi3DB5jDyBH-UiVUOlITHQvMMk/s1600/16.PNG"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiuK7xQzz5_nBZHCYi1CRJ6sLNYq2uBq7WDwA-c61zzyJmCl-rdusRU_8bHiO0md__RPgQjVo8ngGE8aR47V7QUi2XAJIzVGqGQLJSNg5pdlSKxUXnQPCi3DB5jDyBH-UiVUOlITHQvMMk/s640/16.PNG" alt=""></a></p>
+<p>It knows the environment thanks to this line in the Startup.cs :</p>
+<p>appsettings.{env.EnvironmentName}.json</p>
+<p>If you have any question leave a comment in the section below, I’ll get to it as soon as possible.</p>  </div> </article> </body></html>

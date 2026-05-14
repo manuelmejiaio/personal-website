@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="canonical" href="https://manuelmejia.io/blog/2020/03/tailwind-vue"><title>Tailwind + Vue</title><style>:root{color-scheme:light dark;--text: #1a1a1a;--muted: #555;--link: #0b57d0;--bg: #fafafa;--border: #e0e0e0}@media (prefers-color-scheme: dark){:root{--text: #e8e8e8;--muted: #a3a3a3;--link: #8ab4f8;--bg: #121212;--border: #333}}*,*:before,*:after{box-sizing:border-box}body{margin:0 auto;max-width:42rem;padding:1.5rem 1.25rem 3rem;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,sans-serif;line-height:1.6;color:var(--text);background:var(--bg)}a{color:var(--link)}a.back{display:inline-block;margin-bottom:1.5rem;text-decoration:none}a.back:hover{text-decoration:underline}article header{margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid var(--border)}article h1{margin:0 0 .35rem;font-size:1.75rem;line-height:1.25}article time{font-size:.9rem;color:var(--muted)}.prose :global(img){max-width:100%;height:auto}.prose :global(pre){overflow-x:auto;padding:.75rem 1rem;border-radius:6px;background:#7f7f7f1f;font-size:.875rem}.prose :global(table){width:100%;border-collapse:collapse;font-size:.9rem}.prose :global(th),.prose :global(td){border:1px solid var(--border);padding:.35rem .5rem}
+</style></head> <body> <a class="back" href="/blog">← All posts</a> <article> <header> <h1>Tailwind + Vue</h1> <time datetime="2020-03-30T00:05:00.001Z"> March 29, 2020 </time> </header> <div class="prose">  <p><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEht4lHWgXMrPvVdIMxwEKkXWcsOEY91GGAj00XVLm1NzrvdNwl7ZMov_2on5fy8b6Tce8KqP41MC7O8KzP9CXpzay6B6j5ycmSaBCppXFs5iT15mA_MWPAtgeFZhqaBy74Zw3-cvjTwLLo/s1600/manuelmejiajr.com+vue+%252B+tailwind.png"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEht4lHWgXMrPvVdIMxwEKkXWcsOEY91GGAj00XVLm1NzrvdNwl7ZMov_2on5fy8b6Tce8KqP41MC7O8KzP9CXpzay6B6j5ycmSaBCppXFs5iT15mA_MWPAtgeFZhqaBy74Zw3-cvjTwLLo/s320/manuelmejiajr.com+vue+%2B+tailwind.png" alt=""></a></p>
+<p>I can’t stress enough how happy I am after start using <a href="https://tailwindcss.com/">Tailwind CSS</a> in my Vue projects. Now, I don’t have to deal directly with CSS; Tailwind will handle that for me 😉.</p>
+<p>This is a short tutorial on how to add Tailwind CSS to your Vue app created with the Vue CLI. Let’s start:</p>
+<p><strong>1)</strong> Open your project and install <strong>Tailwind</strong>.</p>
+<p>npm i —save-dev tailwindcss</p>
+<p><strong>2)</strong> Create a CSS file called tailwind.css in the following path <strong>src/assets/css/</strong> and add the content below:</p>
+<p>@tailwind  base;<br>
+@tailwind  components;<br>
+@tailwind  utilities;</p>
+<p><strong>3)</strong> Now import the <strong>tailwind.css</strong> in <strong>main.js</strong></p>
+<p>import ’./assets/css/tailwind.css’</p>
+<p><strong>4)</strong> Create your Tailwind config file by running</p>
+<p>npx tailwindcss init</p>
+<p>This will create a minimal <strong>tailwind.config.js</strong> file at the root of your project.</p>
+<p><strong>5)</strong> Create a <strong>postcss.config.js</strong> file at the root of your app and add this:</p>
+<p>const autoprefixer = require(‘autoprefixer’)<br>
+const tailwindcss = require(‘tailwindcss’)<br>
+module.exports = {<br>
+plugins: [    tailwindcss,    autoprefixer  ]<br>
+}</p>
+<p>At this point, Tailwind is ready to be used, but if you try to compile the app you will get a warning because your CSS bundle size is too big, around <strong>850 KiB</strong>. So let’s use <strong>PurgeCSS</strong> to downsize it by removing the unused CSS.</p>
+<p><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgMP_ZG6RBSnvZAcGzay4njDn1arOp1dy21cw0ILYsz8jCMMu8mSN1w8W16DhYCZBPVA55xcewg-toLhLSjsnlbGOv0Iq8oI9kuRJZLWDeN_Krj7aVwF2rV2G4ENWRJi3V0q-jMQrybN60/s1600/1.PNG"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgMP_ZG6RBSnvZAcGzay4njDn1arOp1dy21cw0ILYsz8jCMMu8mSN1w8W16DhYCZBPVA55xcewg-toLhLSjsnlbGOv0Iq8oI9kuRJZLWDeN_Krj7aVwF2rV2G4ENWRJi3V0q-jMQrybN60/s1600/1.PNG" alt=""></a></p>
+<p><strong>6)</strong> Install <strong>PurgeCSS</strong>:</p>
+<p>npm i —save-dev @fullhuman/postcss-purgecss</p>
+<p><strong>7)</strong> Set up <strong>PurgeCSS</strong> in our <strong>postcss.config.js</strong> file (only enabled  in production):</p>
+<p>const autoprefixer = require(‘autoprefixer’)<br>
+const tailwindcss = require(‘tailwindcss’)<br>
+const postcssPurgecss = require(‘@fullhuman/postcss-purgecss’)<br>
+const purgecss = postcssPurgecss({<br>
+  content: [’./public/**/*.html’, ’./src/**/*.vue’],<br>
+  defaultExtractor: content => content.match(/[\w-/:]+(?&#x3C;!:)/g) || [],<br>
+  // Whitelisted classes (E.g.: The router-link active class)  <br>
+whitelistPatterns: [<br>
+    /-(leave|enter|appear)(|-(to|from|active))$/, /^(?!(|.*?:)cursor-move).+-move$/, /^router-link(|-exact)-active$/  ]<br>
+})<br>
+module.exports = {<br>
+  plugins: [<br>
+    tailwindcss,<br>
+    autoprefixer,<br>
+    …(process.env.NODE_ENV === ‘production’ ? [purgecss] : []),<br>
+  ]<br>
+}</p>
+<p><strong>8)</strong> Edit the <strong>tailwind.css</strong> file to only apply PurgeCSS on utility classes, and not to base styles or component classes:</p>
+<p>/* purgecss start ignore */<br>
+@tailwind  base;<br>
+@tailwind  components;<br>
+/* purgecss end ignore */<br>
+@tailwind  utilities;</p>
+<p>Done, now if we compile our app, we will get a smaller CSS bundle size, around <strong>4 KiB</strong>.</p>
+<p><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjyNxKEqJcIeDC7PhuBYCMciXCzapsZWjWleopsQ3nO3jQrsVOHJ_A81Dmib0lWCC2-XeMymj3gON6lc0tuIRW7-sm1V2ZtaSM6wNpM89W8qrI4KD00yyHKarEWhrepcub5LXhS2ganthg/s1600/2.PNG" alt=""></p>
+<p><strong>Bonus</strong><br>
+If you are using <strong>VS Code,</strong> install <a href="https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss">Tailwind CSS IntelliSense</a> to get suggestions as you type + some features that will improve the Tailwind experience.</p>
+<p><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh0_qy58dMNucajgy1ZY74tW4sycCZdNLy-7oZQT-QElmLSyeGhGC-tvyOqP_AU6MgTkSSS6xF1XeD1eFbZ58d8BN5xAVmxCHMDB0Zak3o89MKg6x70-cD32qRp9tvte63qQQ5fR7zHU9c/s1600/html.gif"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh0_qy58dMNucajgy1ZY74tW4sycCZdNLy-7oZQT-QElmLSyeGhGC-tvyOqP_AU6MgTkSSS6xF1XeD1eFbZ58d8BN5xAVmxCHMDB0Zak3o89MKg6x70-cD32qRp9tvte63qQQ5fR7zHU9c/s1600/html.gif" alt=""></a></p>  </div> </article> </body></html>

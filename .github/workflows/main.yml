@@ -15,10 +15,13 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'  # or '18' based on your compatibility
+          node-version: '20'
 
-      - name: Install dependencies
+      - name: Install root dependencies
         run: yarn install
+
+      - name: Install blog dependencies
+        run: cd blog && yarn install
 
       - name: Update Browserslist database
         run: npx browserslist@latest --update-db

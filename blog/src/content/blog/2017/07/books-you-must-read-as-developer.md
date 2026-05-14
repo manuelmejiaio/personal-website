@@ -1,0 +1,74 @@
+---
+title: Books you must read as a Developer
+pubDate: "2017-07-11T18:11:00.001Z"
+description: ""
+legacyPath: /2017/07/books-you-must-read-as-developer.html
+canonicalPath: /blog/2017/07/books-you-must-read-as-developer
+---
+
+[![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgl9AUfRPy3RstWf5Jb60AkA1bwIwjnxHsFiYCT0ru8y9-05UWwrhSDfqiMwcwj4t-lrEQmUYCoYuHnH8rqe9slKfo51yK9H0w4VKZIzbZLZVgxfW8yVQfoadIhyphenhyphen4p_PWKDcLdMAzRf_RA/s320/allthebooks.jpg)](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgl9AUfRPy3RstWf5Jb60AkA1bwIwjnxHsFiYCT0ru8y9-05UWwrhSDfqiMwcwj4t-lrEQmUYCoYuHnH8rqe9slKfo51yK9H0w4VKZIzbZLZVgxfW8yVQfoadIhyphenhyphen4p_PWKDcLdMAzRf_RA/s1600/allthebooks.jpg)
+
+  
+The title says "Must" but in fact, this is my recommendation for you as a developer. The following books changed my vision and the way I work, this took me from having spaghetti code to a more structured and easier to maintain code base. Also, helped me to improve my way of thinking in front of certain circumstances. Let's start:  
+  
+**The Clean Coder** by Robert Martin   
+
+[![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgtu0lKYmeBSNzb0eQkNj8eKJe1kPZNmELMqiB1ZOyHbZGN5XHvKHO9ybGNwCuY5HNZeKcJOFk9R_Q35caVWqLFNzs8N0O-DQUvKr9O3AAy-1z-bdszzMhAOR4E2eD6YjkkXnPSi9tdVCg/s200/512NzCU0wfL._SX258_BO1%252C204%252C203%252C200_.jpg)](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgtu0lKYmeBSNzb0eQkNj8eKJe1kPZNmELMqiB1ZOyHbZGN5XHvKHO9ybGNwCuY5HNZeKcJOFk9R_Q35caVWqLFNzs8N0O-DQUvKr9O3AAy-1z-bdszzMhAOR4E2eD6YjkkXnPSi9tdVCg/s1600/512NzCU0wfL._SX258_BO1%252C204%252C203%252C200_.jpg)
+
+Before I talk to you about the book itself, let me explain to you shortly who is the author: Robert Martin a.k.a. Uncle Bob has been writing code since 1970, he is one of the writers of the Agile Manifesto which defines better ways to do the whole development cycle. He is one of the most influential authors in OO programming.  
+  
+The book "The Clean Coder" talks from the perspective of his experience, as I said before he has been coding since the 70's,  a lot of time on the keyboard as you can imagine. The main point of this book is not to show you how to write good code per se, but how to manage certain situations like:  
+  
+
+*   Project estimates
+*   Best time to write code
+*   When to say NO
+*   About working with a team
+*   Practicing to be a better developer
+
+  
+Furthermore, the book touches other topics very interesting in my opinion and easy to read. In each chapter, he starts making a story of his experience and what you have to do if that happens to you. You will feel identified with some chapters and scenarios that you live on your daily basis. The book is very short with no more than 200 pages....I really recommend you to read it.  
+  
+  
+  
+**Clean Code** by Robert Martin  
+
+[![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh1C23u5Z4oeZ0IOz0ZXHaK8nxSQnQ27_ZUHNec9Qae5trdmKYh57tpirOuzblvzfEyVybV7GZHMF2MZUyHufpDJQJfM7aCJVwgfJzKpj6roupu1NTGGepaARSO765eeeXhmm0S2TM0lB8/s200/41TINACY3hL._SX384_BO1%252C204%252C203%252C200_.jpg)](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh1C23u5Z4oeZ0IOz0ZXHaK8nxSQnQ27_ZUHNec9Qae5trdmKYh57tpirOuzblvzfEyVybV7GZHMF2MZUyHufpDJQJfM7aCJVwgfJzKpj6roupu1NTGGepaARSO765eeeXhmm0S2TM0lB8/s1600/41TINACY3hL._SX384_BO1%252C204%252C203%252C200_.jpg)
+
+In this book, Uncle Bob talks about how to write "beautiful" code, he will focus on how you have to standardize the way you code, no matter if you are working on a team or working alone. In my opinion, this should be treated as the "Bible" for the developers. I'm sure you have worked in projects where you see there isn't any standard: variables with meaningless names, duplication of code, death code, functions that don't really do what the name says should do and so on.  
+  
+No matter if you have 2 months developing or 10 years, I recommend this book for any level. Give it a try and then thanks Uncle Bob.  
+  
+**The Imposter's Handbook** by Rob Conery   
+
+[![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjyjcYKMaKfpzvYRQO3hEyrUDOEPP9OVgXGvEUiMEEni-V4vhwpWkE8UAOFgo2361EvCYdoQnnjX7Bml7350gHpQpKuQL0W61RwTS-PFpdm5t5ztaGOsiKb5SjecDS_FVeegVjLg6Q3D8o/s200/imposter_slide.png)](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjyjcYKMaKfpzvYRQO3hEyrUDOEPP9OVgXGvEUiMEEni-V4vhwpWkE8UAOFgo2361EvCYdoQnnjX7Bml7350gHpQpKuQL0W61RwTS-PFpdm5t5ztaGOsiKb5SjecDS_FVeegVjLg6Q3D8o/s1600/imposter_slide.png)
+
+If you want to refresh your memory or take a deep dive into some developer content you probably have heard but you haven't paid too much attention, this book is for you. As the title says "Imposter",  the author explains why he wrote the book, because of the [Imposter Syndrome](http://vplata.com/b/2016/04/29/the-impostor-syndrome/) that affects most of the developers. This book is also highly recommended if you are going to have a  job interview.  
+  
+  
+  
+  
+  
+**The pragmatic programmer** by Andy Hunt and Dave Thomas  
+
+[![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgThj3kGGNoBlpRfODCo92OOfqMa_TOgNcLfNXgbNgtm8_lXIGNUpBD6StVoNIs6GE6v7Fq5YHJTj-5wc_1dED66rTyK4zZBHk62N_xNP793VkJDvJXkv8AdV7Iq3yRI1_Uk8Qcgy5ctb4/s200/41BKx1AxQWL._SX396_BO1%252C204%252C203%252C200_.jpg)](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgThj3kGGNoBlpRfODCo92OOfqMa_TOgNcLfNXgbNgtm8_lXIGNUpBD6StVoNIs6GE6v7Fq5YHJTj-5wc_1dED66rTyK4zZBHk62N_xNP793VkJDvJXkv8AdV7Iq3yRI1_Uk8Qcgy5ctb4/s1600/41BKx1AxQWL._SX396_BO1%252C204%252C203%252C200_.jpg)
+
+This book is a little bit similar to the Clean Code, but with other topics that Uncle Bob doesn't touch. This book was the recommendation of one of my professor from my university. The book doesn't only show you theories but also includes a lot of materials for practicing.  
+  
+I really like the content but honestly, I didn't do the exercise, if you want to get your hands dirty, this is for you. Take a look at the content table:  [https://pragprog.com/the-pragmatic-programmer/extracts/toc](https://pragprog.com/the-pragmatic-programmer/extracts/toc)  
+
+  
+
+  
+**Cracking the Coding Interview** by Gayle L. McDowell  
+
+[![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiKq4hYOXuI9bd_fLrU7BB9tiSvILG-WYwV4yDk-CBTfakbaONoSgeEu56c8LpdR1E6ZlNGnHzZPuyOdvFIq_Nb5Xd_kysGQsUO1E8KAnHe5vtkd9UCjW9dyEPNN-B6QVIguGQxQ9iMdlE/s200/51F6Lwyq5JL._SX348_BO1%252C204%252C203%252C200_.jpg)](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiKq4hYOXuI9bd_fLrU7BB9tiSvILG-WYwV4yDk-CBTfakbaONoSgeEu56c8LpdR1E6ZlNGnHzZPuyOdvFIq_Nb5Xd_kysGQsUO1E8KAnHe5vtkd9UCjW9dyEPNN-B6QVIguGQxQ9iMdlE/s1600/51F6Lwyq5JL._SX348_BO1%252C204%252C203%252C200_.jpg)
+
+Every developer has been through the process of an interview to get a new job and as we know sometimes it could be a difficult time. Because of that, it would be a great help, some advice from someone with more experience. Gayle L. McDowell will give you some tips on how you have to prepare for that interview, the material you should study, the dress code you have to wear etc... Also, she gives you 189 programming interview questions to practice. Her experiences of interviewing come from the big tech companies such as Google and Apple.  
+  
+  
+  
+  
+This is my short list, hope you like it and get the best of them. If you have others recommendation, let me a comment below.  
+
+[![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhBA70m35AEozlvV-xQZ8YAmCacHEdULrmKmrqTNGz6ca3UhefXmTwT0grqEzsHXcXPTNcr4BnXrTCCK7VO-oDlo7DG4LJ0QHHqg5_DHM0ZF3MyHyWae21kRi3SdqYkUAVyB6jTi7hmWVk/s1600/67598513.jpg)](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhBA70m35AEozlvV-xQZ8YAmCacHEdULrmKmrqTNGz6ca3UhefXmTwT0grqEzsHXcXPTNcr4BnXrTCCK7VO-oDlo7DG4LJ0QHHqg5_DHM0ZF3MyHyWae21kRi3SdqYkUAVyB6jTi7hmWVk/s1600/67598513.jpg)

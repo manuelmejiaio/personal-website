@@ -1,0 +1,86 @@
+---
+import { getCollection } from 'astro:content'
+import '../styles/global.css'
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+)
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Manuel's Blog</title>
+    <meta name="description" content="Software, web, and notes — Manuel Mejia." />
+  </head>
+  <body>
+    <header>
+      <h1>Manuel's Blog</h1>
+      <p class="tagline">Posts migrated from Blogger; written in Markdown.</p>
+    </header>
+    <ul class="posts">
+      {
+        posts.map((post) => (
+          <li>
+            <a href={post.data.canonicalPath}>
+              <span class="title">{post.data.title}</span>
+              <time datetime={post.data.pubDate.toISOString()}>
+                {post.data.pubDate.toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'short',
+                  day: 'numeric',
+                })}
+              </time>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </body>
+</html>
+
+<style>
+  header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border, #e0e0e0);
+  }
+  h1 {
+    margin: 0 0 0.35rem;
+    font-size: 1.75rem;
+  }
+  .tagline {
+    margin: 0;
+    color: var(--muted, #555);
+    font-size: 0.95rem;
+  }
+  ul.posts {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  ul.posts li {
+    margin: 0 0 1rem;
+  }
+  ul.posts a {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    text-decoration: none;
+    padding: 0.5rem 0;
+    border-radius: 6px;
+  }
+  ul.posts a:hover .title {
+    text-decoration: underline;
+  }
+  .title {
+    font-weight: 600;
+    color: var(--link, #0b57d0);
+  }
+  time {
+    font-size: 0.85rem;
+    color: var(--muted, #555);
+  }
+</style>

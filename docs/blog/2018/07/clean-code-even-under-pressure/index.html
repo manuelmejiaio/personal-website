@@ -1,0 +1,28 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="canonical" href="https://manuelmejia.io/blog/2018/07/clean-code-even-under-pressure"><title>Clean Code, even under pressure</title><style>:root{color-scheme:light dark;--text: #1a1a1a;--muted: #555;--link: #0b57d0;--bg: #fafafa;--border: #e0e0e0}@media (prefers-color-scheme: dark){:root{--text: #e8e8e8;--muted: #a3a3a3;--link: #8ab4f8;--bg: #121212;--border: #333}}*,*:before,*:after{box-sizing:border-box}body{margin:0 auto;max-width:42rem;padding:1.5rem 1.25rem 3rem;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,sans-serif;line-height:1.6;color:var(--text);background:var(--bg)}a{color:var(--link)}a.back{display:inline-block;margin-bottom:1.5rem;text-decoration:none}a.back:hover{text-decoration:underline}article header{margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid var(--border)}article h1{margin:0 0 .35rem;font-size:1.75rem;line-height:1.25}article time{font-size:.9rem;color:var(--muted)}.prose :global(img){max-width:100%;height:auto}.prose :global(pre){overflow-x:auto;padding:.75rem 1rem;border-radius:6px;background:#7f7f7f1f;font-size:.875rem}.prose :global(table){width:100%;border-collapse:collapse;font-size:.9rem}.prose :global(th),.prose :global(td){border:1px solid var(--border);padding:.35rem .5rem}
+</style></head> <body> <a class="back" href="/blog">← All posts</a> <article> <header> <h1>Clean Code, even under pressure</h1> <time datetime="2018-07-09T15:35:00.003Z"> July 9, 2018 </time> </header> <div class="prose">  <p><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiF8OmsdlTJmEEV_HpzvGBfXsmMtziNl3rYsIYif0UfeZQsSaEEitjWQndrE31a_GhApdpSdnfVt677_gPwf_AaFy4wy7OCNcX2HozvfhwP8UTfY7QeNx0noPhwvxTJcSsjUL8MdEUSxrY/s1600/giphy.gif"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiF8OmsdlTJmEEV_HpzvGBfXsmMtziNl3rYsIYif0UfeZQsSaEEitjWQndrE31a_GhApdpSdnfVt677_gPwf_AaFy4wy7OCNcX2HozvfhwP8UTfY7QeNx0noPhwvxTJcSsjUL8MdEUSxrY/s320/giphy.gif" alt=""></a></p>
+<p>We all have been in the position at work when the pressure comes, and delivering on time is a “life-or-death situation”. There are a lot of factors that influence a bad project planning like wrong time estimation, workload distribution, team choice, etc…and maybe it will happen more than once, after all, we are humans and we are really bad forecasting.</p>
+<p>Certainly, nobody wants to work under pressure, we can’t think clearly,  we try to work faster, making more mistakes than in a normal situation, it sucks I know. In those moments we tend to focus more on delivering at all costs, even sacrificing our reputation…and that’s why I wanted to write this post.</p>
+<p>Keep in mind, when you are coding, maybe alone or within a team, you are building something to solve a problem, it doesn’t matter how big or small it is, I’m pretty sure that problem will evolve over the time. Having said that, more and more code will be written. This code should be maintainable over time, therefore, setting rules, design patterns, and conventions are a “<strong>MUST</strong>”.</p>
+<p>A strong recommendation is to <strong>start wrapping all these settings before writing the first line of code</strong> because it will be very difficult to clean the mess later. Some examples of simple things to define at the beginning are:</p>
+<ul>
+<li>
+<p>Name conventions for variables and functions (Pascal case, Camel case, etc..)</p>
+</li>
+<li>
+<p>Curly braces format, find some wise advice <a href="https://softwareengineering.stackexchange.com/questions/2715/should-curly-braces-appear-on-their-own-line">here</a></p>
+</li>
+<li>
+<p>Line length (horizontal line of code), <a href="https://stackoverflow.com/questions/276022/line-width-formatting-standard">this questions of SO</a> it’s an interesting starting point</p>
+</li>
+<li>
+<p>Indentation style, <a href="https://en.wikipedia.org/wiki/Indentation_style">here</a> you have some examples</p>
+</li>
+</ul>
+<p>Alternatively, and my preferred one, you can <strong>set up a linter</strong> (a tool that is used to mark the source code with some suspicious and non-structural) and set the rules for the whole team, that will force each member of the team to respect the rules. However, a linter will not help you to write rational algorithms and data structures. For this, I highly recommend you read <a href="http://blog.manuelmejiajr.com/2017/07/books-you-must-read-as-developer.html">this set of books</a> especially the Bob Martin’s choice and long hours of code.</p>
+<p>Also, we could be forced to skip all these rules and conventions to start working right away, but no! stop right there and take a couple of hours to set the rules, this will save you a lot of time in the future. Nobody wants to deal with your messy work. After all, it’s your code, your responsibility, your reputation. Be aware of all the possible consequences this could trigger, from a bad recommendation for a new position or job opportunity to the unpleasant experience of work with you. I’m sure you don’t want to be in that situation, hence **“**<strong>Clean Code, even under pressure”.</strong></p>
+<blockquote>
+<p>“To leave the world better than you found it, sometimes you have to pick up other people’s trash.”</p>
+</blockquote>
+<blockquote>
+<p>-Bill Nye</p>
+</blockquote>  </div> </article> </body></html>

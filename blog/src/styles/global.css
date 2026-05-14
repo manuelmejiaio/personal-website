@@ -1,0 +1,90 @@
+:root {
+  color-scheme: light dark;
+  --text: #1a1a1a;
+  --muted: #555;
+  --link: #0b57d0;
+  --bg: #fafafa;
+  --border: #e0e0e0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #e8e8e8;
+    --muted: #a3a3a3;
+    --link: #8ab4f8;
+    --bg: #121212;
+    --border: #333;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0 auto;
+  max-width: 42rem;
+  padding: 1.5rem 1.25rem 3rem;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Ubuntu, sans-serif;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+}
+
+a {
+  color: var(--link);
+}
+
+a.back {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  text-decoration: none;
+}
+
+a.back:hover {
+  text-decoration: underline;
+}
+
+article header {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+article h1 {
+  margin: 0 0 0.35rem;
+  font-size: 1.75rem;
+  line-height: 1.25;
+}
+
+article time {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.prose :global(img) {
+  max-width: 100%;
+  height: auto;
+}
+
+.prose :global(pre) {
+  overflow-x: auto;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  background: rgba(127, 127, 127, 0.12);
+  font-size: 0.875rem;
+}
+
+.prose :global(table) {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.prose :global(th),
+.prose :global(td) {
+  border: 1px solid var(--border);
+  padding: 0.35rem 0.5rem;
+}

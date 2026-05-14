@@ -1,0 +1,43 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="canonical" href="https://manuelmejia.io/blog/2019/10/github-pages-vue-cli-3"><title>GitHub Pages + Vue CLI 3</title><style>:root{color-scheme:light dark;--text: #1a1a1a;--muted: #555;--link: #0b57d0;--bg: #fafafa;--border: #e0e0e0}@media (prefers-color-scheme: dark){:root{--text: #e8e8e8;--muted: #a3a3a3;--link: #8ab4f8;--bg: #121212;--border: #333}}*,*:before,*:after{box-sizing:border-box}body{margin:0 auto;max-width:42rem;padding:1.5rem 1.25rem 3rem;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,sans-serif;line-height:1.6;color:var(--text);background:var(--bg)}a{color:var(--link)}a.back{display:inline-block;margin-bottom:1.5rem;text-decoration:none}a.back:hover{text-decoration:underline}article header{margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid var(--border)}article h1{margin:0 0 .35rem;font-size:1.75rem;line-height:1.25}article time{font-size:.9rem;color:var(--muted)}.prose :global(img){max-width:100%;height:auto}.prose :global(pre){overflow-x:auto;padding:.75rem 1rem;border-radius:6px;background:#7f7f7f1f;font-size:.875rem}.prose :global(table){width:100%;border-collapse:collapse;font-size:.9rem}.prose :global(th),.prose :global(td){border:1px solid var(--border);padding:.35rem .5rem}
+</style></head> <body> <a class="back" href="/blog">← All posts</a> <article> <header> <h1>GitHub Pages + Vue CLI 3</h1> <time datetime="2019-10-28T21:11:00.001Z"> October 28, 2019 </time> </header> <div class="prose">  <p><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgKfQgBwVDrLS3dhEx7UjKdlNsGj95HPi2baSMK8CS3ryaMDgyy_zQn2OFdb6vh28aTg0OXY8LwZXWzQ07szqD3YCu59FYYNNeZVC04yc0PAtDL_e6Z8pkLbJZvLmJJGlX1qHgwdI5zggA/s1600/manuel+mejia+jr+Vue+CLI+%252B+GitHub+Pages.png"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgKfQgBwVDrLS3dhEx7UjKdlNsGj95HPi2baSMK8CS3ryaMDgyy_zQn2OFdb6vh28aTg0OXY8LwZXWzQ07szqD3YCu59FYYNNeZVC04yc0PAtDL_e6Z8pkLbJZvLmJJGlX1qHgwdI5zggA/s640/manuel+mejia+jr+Vue+CLI+%2B+GitHub+Pages.png" alt=""></a></p>
+<p>In this post, I will show you how to run your Vue CLI 3 project on GitHub Pages in a few simple steps. GitHub Pages is ideally for your personal website, documentation, demos, or your <a href="https://cubicalconsulting.com/">wife’s website</a> 😊 … basically, any static project that you want to display to the world quickly.</p>
+<p>For the purpose of this tutorial, I will be using <a href="https://github.com/mejiamanuel57">mejiamanuel5</a>/<a href="https://github.com/mejiamanuel57/gh-pages-vue-cli-3">gh-pages-vue-cli-3</a>  a project that I created for a better demonstration. You can clone my repo, use your existing Vue CLI 3 project or create a new one. If you don’t know how to create one, this <a href="https://cli.vuejs.org/guide/creating-a-project.html#vue-create">guide</a> can help you.</p>
+<p>Ready? let’s start:</p>
+<h3 id="1-at-the-root-of-your-project-create-a-file-calleddeployshand-add-this-script">1) At the root of your project create a file called deploy.sh and add this script:</h3>
+<p># abort on errors<br>
+set -e</p>
+<p># build<br>
+echo Linting..<br>
+npm run lint<br>
+echo Building. this may take a minute…<br>
+npm run build</p>
+<p># if you are deploying to a custom domain add a CNAME (uncomment the next 3 lines)<br>
+#cd docs<br>
+#echo ‘yourcustomdomain.com’ > CNAME<br>
+#cd -</p>
+<p># deploy<br>
+echo Deploying..<br>
+git add -A<br>
+git commit -m ‘deploy’<br>
+git push -f <a href="https://github.com/mejiamanuel57/gh-pages-vue-cli-3.git">https://github.com/mejiamanuel57/gh-pages-vue-cli-3.git</a> master</p>
+<p>Substitute <strong>mejiamanuel57</strong> with your GitHub username and <strong>gh-pages-vue-cli-3</strong> with the name of the repo you are pointing to. This script will lint, commit and deploy your code to GitHub.</p>
+<h3 id="2-in-your-packagejson-change-your-scripts-section-for-this">2) In your package.json, change your “scripts”: section for this:</h3>
+<p>“scripts”: { “dev”: “vue-cli-service serve —open”, “build”: “vue-cli-service build —dest docs”, “lint”: “vue-cli-service lint”, “deploy”: “bash deploy.sh” },</p>
+<p>Now your output directory for the <strong>“build”</strong> will be <strong>docs</strong> (We will use this directory in GitHub Pages later)<strong>.</strong>  Also we have added <strong>“deploy”:</strong> to run the script from step 1.</p>
+<h3 id="3-at-the-root-of-your-project-create-vueconfigjsand-add-this-configuration">3) At the root of your project create vue.config.js and add this configuration:</h3>
+<p>module.exports = { publicPath: process.env.NODE_ENV === ‘production’ ? ‘/gh-pages-vue-cli-3/’ : ’/’ }</p>
+<p>Substitute <strong>gh-pages-vue-cli-3</strong> with the name of your repo. This will tell GitHub Pages where your public path starts.</p>
+<h3 id="4-now-in-your-terminal-run-npm-run-deploy-to-build-and-deploy">4) Now, in your terminal run npm run deploy to build and deploy.</h3>
+<h3 id="5-on-github-go-toyour-repo---settings--github-pages----source-and-select-master-branch-docs-folder">5) On GitHub go to your repo -> settings -> GitHub Pages - > Source and select master branch /docs folder</h3>
+<p><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjLkOZcqxWckUdm8xyXiAXgO11N0GfbtMuonI3K4qw1tvAU0g67hVpW7reTU4coBG9qR0GQ14L5YJjsInGoAau9ASBYO8Z6CAHnF56AYZ72zbRrllSaYowSQKM3rRid_IgapRuxTieADwg/s1600/Capture.PNG"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjLkOZcqxWckUdm8xyXiAXgO11N0GfbtMuonI3K4qw1tvAU0g67hVpW7reTU4coBG9qR0GQ14L5YJjsInGoAau9ASBYO8Z6CAHnF56AYZ72zbRrllSaYowSQKM3rRid_IgapRuxTieADwg/s640/Capture.PNG" alt=""></a></p>
+<h3 id="bonus-if-you-want-to-improve-the-seo-and-routing-ofyour-vue-project-add-theprerender-spa-pluginpackage">🌟Bonus: if you want to improve the SEO and routing of your Vue project, add the <a href="https://github.com/chrisvfritz/prerender-spa-plugin">prerender-spa-plugin</a> package:</h3>
+<h3 id="1-run-npm-install--d-prerender-spa-plugin">1) Run  npm install -D prerender-spa-plugin</h3>
+<h3 id="2-change-yourvueconfigjsfor-this">2) Change your vue.config.js for this:</h3>
+<p>const path = require(‘path’) const PrerenderSPAPlugin = require(‘prerender-spa-plugin’) const Renderer = PrerenderSPAPlugin.PuppeteerRenderer module.exports = { publicPath: process.env.NODE_ENV === ‘production’ ? ‘/gh-pages-vue-cli-3/’ : ’/’, configureWebpack: (config) => { if (process.env.NODE_ENV !== ‘production’) return return { plugins: [ new PrerenderSPAPlugin({ staticDir: path.join(__dirname, ‘docs’), routes: [’/’, ‘/about’], minify: { collapseBooleanAttributes: true, collapseWhitespace: true, decodeEntities: true, keepClosingSlash: true, sortAttributes: true }, renderer: new Renderer({ headless: true }) }) ] } } }</p>
+<p>Substitute <strong>gh-pages-vue-cli-3</strong> with the name of your repo and use <strong>routes: []</strong>  to add the routes of your current project.</p>
+<p><strong>Note</strong>: if you are going to use a custom domain (<a href="http://www.mydomain.com">www.mydomain.com</a>) remove or comment the <strong>publiPath</strong> line: <br>
+publicPath: process.env.NODE_ENV === ‘production’ ? ‘/gh-pages-vue-cli-3/’ : ’/‘,</p>
+<h3 id="3-and-runnpm-run-deploy-in-your-terminal">3) …and run npm run deploy in your terminal.</h3>
+<p>That’s all, enjoy your Vue project hosted on GitHub Pages with SEO optimizations.👍</p>
+<p><a href="https://github.com/mejiamanuel57/gh-pages-vue-cli-3">Source of the project.</a></p>
+<p>I hope this post helps you. If you have any question please, leave a comment, also stay tuned for the updates about how to run a Vue CLI 4 project on GitHub Pages.</p>  </div> </article> </body></html>

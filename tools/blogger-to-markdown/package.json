@@ -1,0 +1,14 @@
+{
+  "name": "blogger-to-markdown",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "migrate": "node import.mjs"
+  },
+  "dependencies": {
+    "fast-xml-parser": "^4.5.0",
+    "html-entities": "^2.5.2",
+    "turndown": "^7.2.0",
+    "turndown-plugin-gfm": "^1.0.2"
+  }
+}
