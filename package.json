@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "vue-cli-service serve --open",
-    "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider vue-cli-service build --dest docs && cd blog && yarn build",
+    "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider vue-cli-service build --dest docs && cd blog && yarn build && cd .. && node scripts/write-docs-cname.mjs",
     "lint": "vue-cli-service lint",
     "deploy": "bash deploy.sh"
   },
