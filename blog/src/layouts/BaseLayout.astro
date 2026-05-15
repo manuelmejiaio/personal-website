@@ -1,0 +1,48 @@
+---
+import SiteNav from '../components/SiteNav.astro'
+import SiteFooter from '../components/SiteFooter.astro'
+import siteCss from '../styles/global.css?url'
+
+interface Props {
+  title: string
+  description?: string
+  /** Path from site root (e.g. `/blog/2020/08/slug`); omit if no canonical */
+  canonicalPath?: string
+  /** Classes on `<main>` */
+  mainClass?: string
+  /** Extra classes on `<body>` (e.g. theme for post pages) */
+  bodyClass?: string
+}
+
+const { title, description, canonicalPath, mainClass = 'page-main', bodyClass } = Astro.props
+
+const canonicalHref =
+  canonicalPath != null && canonicalPath !== ''
+    ? new URL(canonicalPath, Astro.site).href
+    : null
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    {description ? <meta name="description" content={description} /> : null}
+    {canonicalHref ? <link rel="canonical" href={canonicalHref} /> : null}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href={siteCss} />
+  </head>
+  <body class:list={[bodyClass]}>
+    <SiteNav />
+    <main class={mainClass}>
+      <slot />
+    </main>
+    <SiteFooter />
+  </body>
+</html>

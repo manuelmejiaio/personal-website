@@ -1,5 +1,5 @@
 ---
-title: My Productivity Stack in the Age of AI (Software &amp; Hardware)
+title: My Productivity Stack in the Age of AI (Software and Hardware)
 pubDate: "2025-10-26T21:02:00Z"
 description: ""
 legacyPath: /2025/10/my-productivity-stack-in-age-of-ai.html

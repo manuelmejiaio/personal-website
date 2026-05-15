@@ -1,5 +1,5 @@
 ---
-import '../styles/global.css'
+import BaseLayout from './BaseLayout.astro'
 
 interface Props {
   title: string
@@ -9,20 +9,18 @@ interface Props {
 }
 
 const { title, pubDate, description, canonicalPath } = Astro.props
-const canonical = new URL(canonicalPath, `${Astro.site}/`).href
 const home = import.meta.env.BASE_URL.replace(/\/+$/, '') || '/'
+const metaDescription = description?.trim() || undefined
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="canonical" href={canonical} />
-    <title>{title}</title>
-    {description ? <meta name="description" content={description} /> : null}
-  </head>
-  <body>
+<BaseLayout
+  title={title}
+  description={metaDescription}
+  canonicalPath={canonicalPath}
+  mainClass="page-main page-main--post"
+  bodyClass="site-body--post"
+>
+  <div class="post-panel">
     <a class="back" href={home}>← All posts</a>
     <article>
       <header>
@@ -39,5 +37,5 @@ const home = import.meta.env.BASE_URL.replace(/\/+$/, '') || '/'
         <slot />
       </div>
     </article>
-  </body>
-</html>
+  </div>
+</BaseLayout>

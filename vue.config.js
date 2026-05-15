@@ -4,6 +4,16 @@ const Renderer = PrerenderSPAPlugin.PuppeteerRenderer
 
 module.exports = {
   // publicPath: process.env.NODE_ENV === 'production' ? '/personal-website/' : '/',
+  // With Astro blog on `yarn dev` in ./blog (port 4321), open the site at this dev server
+  // and use links like /blog/... — they proxy to Astro so home + blog match production.
+  devServer: {
+    proxy: {
+      '/blog': {
+        target: 'http://127.0.0.1:4321',
+        changeOrigin: true,
+      },
+    },
+  },
   configureWebpack: () => {
     if (process.env.NODE_ENV !== 'production') return
 
